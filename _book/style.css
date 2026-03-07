@@ -1,0 +1,7 @@
+
+p.caption { color: #555; }
+div.theorem, div.definition, div.example, div.exercise {
+  border-left: 4px solid #999;
+  padding-left: 1em;
+  margin: 1em 0;
+}
