@@ -1,0 +1,49 @@
+
+# How to Use This Book
+
+This book is organized into five parts.
+
+## Part I: Mathematical Language and Data Representation
+
+These chapters introduce mathematical notation, functions, vectors,
+matrices, and the geometry of data.
+
+## Part II: Probability and Statistical Thinking
+
+These chapters develop probability models, random variables, expectation,
+sampling, and statistical inference.
+
+## Part III: Linear and Generalized Linear Models
+
+These chapters explain least squares, regression, classification,
+and basic statistical learning ideas.
+
+## Part IV: Optimization and High-Dimensional Methods
+
+These chapters build the mathematical foundation of machine learning:
+gradients, convexity, regularization, and dimensionality reduction.
+
+## Part V: Appendix and Reference Material
+
+Reference formulas, notation, and selected proofs are collected here.
+
+## Prerequisites
+
+Students should have prior exposure to high-school algebra and basic graphing.
+No previous course in calculus, probability, or linear algebra is assumed,
+although such background will help.
+
+## Software
+
+Examples are written in **R** using basic packages. The book can be rendered
+with **bookdown** to HTML or PDF.
+
+## Learning Goals
+
+After completing this book, a student should be able to:
+
+- describe data mathematically as vectors, matrices, and random variables;
+- compute and interpret means, variances, covariances, and regression coefficients;
+- use probability models to reason about uncertainty;
+- understand gradients, optimization, and regularization in a first course in machine learning;
+- read more advanced material in statistics, data science, and artificial intelligence.

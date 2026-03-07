@@ -1,0 +1,65 @@
+# Optimization for Data Science
+
+
+Modern data science depends on optimization. Model fitting often means choosing
+parameters that minimize a loss function or maximize an objective.
+
+## Objective functions
+
+An objective function maps a parameter vector $\theta$ to a real number
+$L(\theta)$. In regression, $L$ may be a sum of squared errors. In logistic
+regression, $L$ may be a negative log-likelihood.
+
+## Derivatives and gradients
+
+For a differentiable function $f : \mathbb{R}^p \to \mathbb{R}$, the gradient is
+
+$$
+\nabla f(\theta) =
+\left(
+\frac{\partial f}{\partial \theta_1},
+\ldots,
+\frac{\partial f}{\partial \theta_p}
+\right)^T.
+$$
+
+The gradient points in the direction of steepest increase.
+
+## Gradient descent
+
+To minimize $f$, we can iterate
+
+$$
+\theta^{(t+1)} = \theta^{(t)} - \eta \nabla f(\theta^{(t)}),
+$$
+
+where $\eta > 0$ is a learning rate.
+
+## Convexity
+
+Convex functions are attractive because every local minimum is a global minimum.
+Many classical statistical problems are convex, while deep learning problems
+typically are not.
+
+## R example
+
+```{r}
+f <- function(x) (x - 3)^2 + 1
+x <- 0
+eta <- 0.1
+path <- numeric(20)
+for (t in 1:20) {
+  grad <- 2*(x - 3)
+  x <- x - eta*grad
+  path[t] <- x
+}
+path
+```
+
+## Exercises
+
+1. Define the gradient of a multivariable function.
+2. What role does the learning rate play in gradient descent?
+3. Explain the difference between minimization and maximization.
+4. Give one reason why feature scaling can help optimization.
+

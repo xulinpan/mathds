@@ -1,0 +1,54 @@
+# Dimension Reduction
+
+
+High-dimensional datasets are difficult to visualize and often contain
+substantial redundancy. Dimension reduction aims to describe the main structure
+of the data with fewer coordinates.
+
+## Principal component analysis
+
+PCA finds orthogonal directions of maximal variance. If the data matrix $X$ has
+been centered, then principal component directions are eigenvectors of the
+covariance matrix
+
+$$
+S = \frac{1}{n-1}X^TX.
+$$
+
+The first principal component solves
+
+$$
+\max_{\|u\|=1} \operatorname{Var}(Xu).
+$$
+
+## Interpretation
+
+PCA does not use outcome labels. It is an unsupervised method designed to:
+
+- compress data,
+- reveal low-dimensional structure,
+- visualize dominant patterns.
+
+## SVD connection
+
+If $X = UDV^T$ is the singular value decomposition, then the columns of $V$ are
+principal directions and the singular values determine the amount of explained
+variation.
+
+## R example
+
+```{r}
+set.seed(123)
+X <- cbind(rnorm(100), rnorm(100))
+X[,2] <- X[,1] + rnorm(100, sd = 0.2)
+pc <- prcomp(X, scale. = TRUE)
+summary(pc)
+```
+
+## Exercises
+
+1. What problem is PCA designed to solve?
+2. Why is centering the data important before PCA?
+3. Explain the difference between supervised and unsupervised learning.
+4. Compute PCA on a small simulated dataset in R.
+

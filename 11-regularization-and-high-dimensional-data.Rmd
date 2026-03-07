@@ -1,0 +1,43 @@
+# Regularization and High-Dimensional Data
+
+
+When the number of features is large, flexible models can fit noise rather than
+signal. Regularization imposes structure that improves stability and prediction.
+
+## Overfitting
+
+A model overfits when it captures random fluctuations specific to the training
+sample and performs poorly on new data.
+
+## Regularization penalties
+
+Two common penalized least-squares problems are:
+
+### Ridge regression
+
+$$
+\min_{\beta} \left\{ \|y - X\beta\|_2^2 + \lambda \|\beta\|_2^2 \right\}.
+$$
+
+### Lasso
+
+$$
+\min_{\beta} \left\{ \|y - X\beta\|_2^2 + \lambda \|\beta\|_1 \right\}.
+$$
+
+Ridge shrinks coefficients smoothly. Lasso can produce exact zeros and therefore
+performs variable selection.
+
+## Bias-variance tradeoff
+
+More flexible models often reduce bias but increase variance. Regularization
+adds bias on purpose in order to reduce variance and improve out-of-sample
+performance.
+
+## Exercises
+
+1. Define overfitting in your own words.
+2. Compare ridge regression and lasso.
+3. Why can regularization improve prediction?
+4. Describe a situation where many correlated predictors are present.
+

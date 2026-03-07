@@ -1,0 +1,53 @@
+# Statistical Inference
+
+
+Statistical inference turns data into conclusions about unknown quantities. A
+sample is observed, but the underlying population characteristics are not fully
+known.
+
+## Estimation
+
+Suppose $X_1,\ldots,X_n$ are observations from a population with unknown mean
+$\mu$. A natural estimator is the sample mean
+
+$$
+\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i.
+$$
+
+::: {.definition}
+An **estimator** is a rule, based on the sample, for approximating an unknown
+population parameter.
+:::
+
+## Sampling variability
+
+Different samples produce different estimates. This variability is central to
+statistics. The standard error quantifies typical fluctuation of an estimator.
+
+## Confidence intervals
+
+A confidence interval gives a range of plausible values for a parameter.
+
+For a mean with known variance,
+
+$$
+\bar{X} \pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}.
+$$
+
+## Hypothesis testing
+
+In a test, we compare a null hypothesis $H_0$ against an alternative $H_1$.
+The $p$-value summarizes the evidence against $H_0$.
+
+::: {.remark}
+A small $p$-value does not measure the size or practical importance of an
+effect. It measures incompatibility with the null model.
+:::
+
+## Exercises
+
+1. Explain the difference between a parameter and a statistic.
+2. Why does increasing sample size tend to reduce uncertainty?
+3. State the interpretation of a 95\% confidence interval.
+4. Describe one misuse of the $p$-value.
+

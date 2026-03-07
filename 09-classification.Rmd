@@ -1,0 +1,46 @@
+# Classification and Logistic Regression
+
+
+Many data science problems require predicting categories rather than numerical
+values. Examples include spam detection, disease screening, fraud detection,
+and sentiment analysis.
+
+## Binary classification
+
+In binary classification, the response variable takes values in $\{0,1\}$.
+
+## Why not use linear regression?
+
+A linear model can produce fitted values outside the interval $[0,1]$. That
+creates problems when the output should be interpreted as a probability.
+
+## Logistic regression
+
+Logistic regression models the conditional probability of class 1 by
+
+$$
+P(Y=1 \mid x) = \frac{1}{1+\exp\left(-(\beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p)\right)}.
+$$
+
+Equivalently, the log-odds satisfy
+
+$$
+\log\left(\frac{P(Y=1\mid x)}{1-P(Y=1\mid x)}\right) = \beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p.
+$$
+
+## Classification rules
+
+After obtaining a predicted probability $\hat{p}(x)$, a decision rule classifies
+$x$ into class 1 when $\hat{p}(x)$ exceeds a threshold such as $0.5$.
+
+## Evaluation metrics
+
+Common metrics include accuracy, precision, recall, specificity, and AUC.
+
+## Exercises
+
+1. Explain why logistic regression outputs values in $(0,1)$.
+2. What is the meaning of an odds ratio?
+3. Describe one situation where accuracy is a poor metric.
+4. Write down the logistic model for two predictors.
+

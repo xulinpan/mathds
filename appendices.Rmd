@@ -1,0 +1,36 @@
+# Appendices
+
+
+## Appendix A: Useful Notation
+
+| Symbol | Meaning |
+|:--|:--|
+| $x_i$ | the $i$th observation or feature value |
+| $X$ | data matrix |
+| $y$ | response vector |
+| $\beta$ | parameter vector |
+| $E[X]$ | expectation |
+| $\operatorname{Var}(X)$ | variance |
+| $\nabla f$ | gradient of $f$ |
+
+## Appendix B: Matrix Identities
+
+For conformable matrices,
+
+- $(AB)^T = B^T A^T$,
+- $(A^T)^T = A$,
+- $A(I)=A$,
+- if $A$ is invertible, then $AA^{-1}=I$.
+
+## Appendix C: R Setup
+
+```{r eval=FALSE}
+install.packages(c("bookdown", "knitr", "rmarkdown"))
+bookdown::render_book("index.Rmd")
+```
+
+## Appendix D: Suggestions for Instructors
+
+A one-semester course may cover Chapters 1--8 and selected parts of Chapters
+10--12. A two-semester sequence can cover the entire book with projects.
+

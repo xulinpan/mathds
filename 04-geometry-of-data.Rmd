@@ -1,0 +1,60 @@
+# Geometry of Data
+
+
+Thinking geometrically is one of the most productive habits in data science.
+Each observation can be viewed as a point in a feature space. Similarity,
+distance, clustering, projection, and dimension reduction are all geometric
+ideas.
+
+## Distance
+
+For vectors $x,y \in \mathbb{R}^p$, the Euclidean distance is
+
+$$
+d(x,y) = \|x-y\|_2.
+$$
+
+When features are measured on very different scales, Euclidean distance may be
+misleading. Standardization can help.
+
+## Angles and cosine similarity
+
+The cosine of the angle between vectors is
+
+$$
+\cos(\theta) = \frac{x^T y}{\|x\|_2\|y\|_2}.
+$$
+
+In text mining and recommendation systems, cosine similarity often provides a
+better measure of resemblance than raw Euclidean distance.
+
+## Projections
+
+If $u$ is a nonzero vector, then the projection of $x$ onto $u$ is
+
+$$
+\operatorname{proj}_u(x) = \frac{x^T u}{u^T u}u.
+$$
+
+Projection is a central idea in least squares and principal component analysis.
+
+::: {.theorem}
+The vector $x - \operatorname{proj}_u(x)$ is orthogonal to $u$.
+:::
+
+## Visual example
+
+```{r, fig.cap="A cloud of points in two-dimensional feature space"}
+set.seed(1)
+x1 <- rnorm(100)
+x2 <- 0.7 * x1 + rnorm(100, sd = 0.5)
+plot(x1, x2, xlab = "Feature 1", ylab = "Feature 2", pch = 19, cex = 0.7)
+```
+
+## Exercises
+
+1. Compute the distance between $(1,2)$ and $(4,6)$.
+2. Compute cosine similarity for $(1,1)$ and $(2,2)$.
+3. Project $(3,4)$ onto $(1,0)$.
+4. Explain why scaling can affect nearest-neighbor methods.
+

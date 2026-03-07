@@ -1,0 +1,73 @@
+# Functions and Mathematical Models
+
+
+A mathematical model connects input variables to outputs. In data science the
+input is often a feature vector and the output is a numerical prediction,
+probability, or class label.
+
+## Functions
+
+A function $f$ from a set $A$ to a set $B$ assigns exactly one element
+$f(a) \in B$ to each element $a \in A$.
+
+::: {.definition}
+Let $A$ and $B$ be sets. A **function** $f : A \to B$ is a rule that assigns to
+each $a \in A$ a unique value $f(a) \in B$.
+:::
+
+Examples include linear functions, polynomials, exponentials, and logistic
+functions.
+
+## Linear functions
+
+A linear function of one variable has the form
+
+$$
+f(x) = ax + b.
+$$
+
+When multiple features are present, a linear function becomes
+
+$$
+f(x) = \beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p.
+$$
+
+## Nonlinear models
+
+Some relationships are not well described by straight lines.
+
+- Exponential growth: $f(t) = Ce^{kt}$
+- Logistic curve: $f(x) = \dfrac{1}{1 + e^{-x}}$
+
+The logistic function is especially important in classification because it maps
+real-valued inputs to numbers between $0$ and $1$.
+
+## Composition of functions
+
+A complex model may be written as a composition of simpler functions. Neural
+networks are built from repeated linear transformations followed by nonlinear
+activation functions.
+
+::: {.example}
+If $g(x) = 2x + 1$ and $h(x) = x^2$, then
+$(h \circ g)(x) = h(g(x)) = (2x+1)^2$.
+:::
+
+## Graphical interpretation
+
+Functions can be interpreted visually.
+
+```{r, fig.cap="Examples of linear, exponential, and logistic functions"}
+curve(2*x + 1, from = -3, to = 3, ylim = c(-5, 8), ylab = "y")
+curve(exp(x/2), add = TRUE)
+curve(1/(1+exp(-x)), add = TRUE)
+legend("topleft", legend = c("linear", "exponential", "logistic"), lty = 1)
+```
+
+## Exercises
+
+1. Evaluate $f(x)=3x-2$ at $x=5$.
+2. Sketch the graph of the logistic function and explain why its range is $(0,1)$.
+3. Give an example of a real data-science problem where an exponential model is reasonable.
+4. Compute $(f \circ g)(x)$ when $f(x)=x^2+1$ and $g(x)=3x$.
+

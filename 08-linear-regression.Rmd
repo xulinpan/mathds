@@ -1,0 +1,62 @@
+# Linear Regression
+
+
+Linear regression is one of the most important mathematical models in data
+science. It relates a response variable to one or more predictors.
+
+## Simple linear regression
+
+The model is
+
+$$
+Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i,
+$$
+
+where $\varepsilon_i$ is an error term.
+
+## Least squares
+
+The least-squares estimator minimizes the sum of squared residuals,
+
+$$
+S(\beta_0,\beta_1) = \sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i)^2.
+$$
+
+In matrix form, the multiple regression model is
+
+$$
+y = X\beta + \varepsilon.
+$$
+
+The normal equations lead to
+
+$$
+\hat{\beta} = (X^TX)^{-1}X^Ty,
+$$
+
+provided $X^TX$ is invertible.
+
+## Interpretation
+
+- $\beta_0$ is the intercept,
+- $\beta_j$ is the expected change in the response when feature $j$ changes by
+  one unit and other features are held fixed.
+
+## R example
+
+```{r}
+set.seed(42)
+x <- 1:20
+y <- 3 + 2*x + rnorm(20, sd = 3)
+fit <- lm(y ~ x)
+coef(fit)
+summary(fit)$r.squared
+```
+
+## Exercises
+
+1. Write the least-squares objective for simple linear regression.
+2. Explain what a residual is.
+3. Why can multicollinearity cause instability?
+4. Fit a simple regression model in R on simulated data.
+

@@ -1,0 +1,39 @@
+---
+title: "Mathematics of Data Science"
+author: "Xulin Pan"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: bibliography.bib
+link-citations: yes
+fontsize: 11pt
+geometry: margin=1in
+---
+
+# Preface {-}
+
+This textbook is written for undergraduate students entering data science,
+statistics, computer science, and related fields. Its purpose is to develop the
+mathematical ideas that support modern data analysis, statistical modeling, and
+machine learning.
+
+The book emphasizes three themes:
+
+1. **Representation**: how data are encoded as vectors, matrices, functions, and random variables.
+2. **Uncertainty**: how probability and statistics help quantify variation and risk.
+3. **Learning**: how optimization and modeling convert data into predictions and decisions.
+
+The presentation is intentionally balanced. It is more rigorous than a purely
+computational handbook, but more applied than a traditional pure mathematics
+text. Every chapter contains definitions, examples, interpretation, and
+exercises, together with code fragments in R.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.align = "center"
+)
+options(width = 80)
+```

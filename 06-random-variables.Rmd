@@ -1,0 +1,71 @@
+# Random Variables and Distributions
+
+
+A random variable converts uncertain outcomes into numerical values. Once this
+translation is made, we can compute means, variances, probabilities, and
+prediction intervals.
+
+## Discrete random variables
+
+A discrete random variable $X$ takes values in a finite or countable set. Its
+probability mass function is
+
+$$
+p(x) = P(X=x).
+$$
+
+## Continuous random variables
+
+A continuous random variable has a density $f(x)$ satisfying
+
+$$
+P(a \le X \le b) = \int_a^b f(x)\,dx.
+$$
+
+## Expectation
+
+::: {.definition}
+The **expectation** of a random variable $X$ is
+
+$$
+E[X] = \sum_x x p(x)
+$$
+
+in the discrete case, and
+
+$$
+E[X] = \int_{-\infty}^{\infty} x f(x)\,dx
+$$
+
+in the continuous case, whenever the quantity exists.
+:::
+
+## Variance
+
+Variance measures spread around the mean:
+
+$$
+\operatorname{Var}(X) = E[(X-E[X])^2] = E[X^2] - (E[X])^2.
+$$
+
+## Important distributions
+
+- Bernoulli$(p)$
+- Binomial$(n,p)$
+- Normal$(\mu,\sigma^2)$
+- Poisson$(\lambda)$
+
+## R example
+
+```{r}
+x <- 0:5
+dbinom(x, size = 5, prob = 0.4)
+```
+
+## Exercises
+
+1. Compute the expectation of a Bernoulli$(p)$ random variable.
+2. State the mean and variance of a Binomial$(n,p)$ distribution.
+3. Why is the normal distribution important in statistics?
+4. Simulate 100 draws from a normal distribution in R and plot a histogram.
+

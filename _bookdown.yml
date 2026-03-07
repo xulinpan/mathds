@@ -1,0 +1,23 @@
+book_filename: "mathematics-of-data-science"
+output_dir: "_book"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+rmd_files:
+  - index.Rmd
+  - preface.Rmd
+  - 01-introduction.Rmd
+  - 02-functions-and-models.Rmd
+  - 03-vectors-and-matrices.Rmd
+  - 04-geometry-of-data.Rmd
+  - 05-probability.Rmd
+  - 06-random-variables.Rmd
+  - 07-statistical-inference.Rmd
+  - 08-linear-regression.Rmd
+  - 09-classification.Rmd
+  - 10-optimization.Rmd
+  - 11-regularization-and-high-dimensional-data.Rmd
+  - 12-dimension-reduction.Rmd
+  - appendices.Rmd
+  - references.Rmd

@@ -1,0 +1,83 @@
+# Introduction to Data Science Mathematics
+
+
+Data science relies on a collection of mathematical ideas rather than a single
+technique. A modern analyst needs to organize data, quantify uncertainty, fit
+models, evaluate predictions, and reason about algorithms. Mathematics provides
+the language for all of those tasks.
+
+## What is data?
+
+A dataset with $n$ observations and $p$ features can be represented by a matrix
+
+$$
+X = \begin{pmatrix}
+x_{11} & x_{12} & \cdots & x_{1p}\\
+x_{21} & x_{22} & \cdots & x_{2p}\\
+\vdots & \vdots & \ddots & \vdots\\
+x_{n1} & x_{n2} & \cdots & x_{np}
+\end{pmatrix}.
+$$
+
+Each row corresponds to one observational unit and each column corresponds to a
+measured variable.
+
+::: {.definition}
+A **feature vector** is the row vector or column vector that stores the measured
+values associated with a single observational unit.
+:::
+
+## Three mathematical viewpoints
+
+Data science can be organized around three mathematical viewpoints.
+
+1. **Geometry**: data points live in a space such as $\mathbb{R}^p$.
+2. **Uncertainty**: observations are modeled using random variables.
+3. **Optimization**: models are selected by minimizing a loss function.
+
+## Example: house-price prediction
+
+Suppose that each house is described by size, age, number of bedrooms, and
+distance to downtown. Then a row of the feature matrix may be written as
+
+$$
+x_i = (1800,\ 12,\ 3,\ 4.5).
+$$
+
+A linear model predicts the price by
+
+$$
+\hat{y}_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i3} + \beta_4 x_{i4}.
+$$
+
+The coefficients $\beta_0,\ldots,\beta_4$ are unknown parameters to be learned
+from data.
+
+## Computational example
+
+```{r}
+x <- c(1800, 12, 3, 4.5)
+names(x) <- c("size", "age", "bedrooms", "distance")
+x
+```
+
+## Why proofs matter
+
+Data science is computational, but computation alone is not enough. A proof
+explains why a method works, when it can fail, and which assumptions are
+necessary.
+
+::: {.example}
+If two analysts use the same algorithm but apply it to data with different
+scales, they may obtain different answers. A mathematical analysis of the
+algorithm explains why scaling matters.
+:::
+
+## Exercises
+
+1. Give an example of a dataset that can be stored in matrix form.
+2. Explain the difference between an observation and a feature.
+3. Write a short paragraph describing a prediction problem and identify the
+   response variable.
+4. Create a $3 \times 2$ matrix in R and label its rows and columns.
+
