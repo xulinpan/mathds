@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Classification and Logistic Regression | Mathematics of Data Science</title>
+  <meta name="description" content="Chapter 10 Classification and Logistic Regression | Mathematics of Data Science" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Classification and Logistic Regression | Mathematics of Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Classification and Logistic Regression | Mathematics of Data Science" />
+  
+  
+  
+
+<meta name="author" content="Xulin Pan" />
+
+
+<meta name="date" content="2026-03-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="linear-regression.html"/>
+<link rel="next" href="optimization-for-data-science.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Mathematics of Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html"><i class="fa fa-check"></i><b>1</b> How to Use This Book</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#part-i-mathematical-language-and-data-representation"><i class="fa fa-check"></i><b>1.1</b> Part I: Mathematical Language and Data Representation</a></li>
+<li class="chapter" data-level="1.2" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#part-ii-probability-and-statistical-thinking"><i class="fa fa-check"></i><b>1.2</b> Part II: Probability and Statistical Thinking</a></li>
+<li class="chapter" data-level="1.3" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#part-iii-linear-and-generalized-linear-models"><i class="fa fa-check"></i><b>1.3</b> Part III: Linear and Generalized Linear Models</a></li>
+<li class="chapter" data-level="1.4" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#part-iv-optimization-and-high-dimensional-methods"><i class="fa fa-check"></i><b>1.4</b> Part IV: Optimization and High-Dimensional Methods</a></li>
+<li class="chapter" data-level="1.5" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#part-v-appendix-and-reference-material"><i class="fa fa-check"></i><b>1.5</b> Part V: Appendix and Reference Material</a></li>
+<li class="chapter" data-level="1.6" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#prerequisites"><i class="fa fa-check"></i><b>1.6</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.7" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#software"><i class="fa fa-check"></i><b>1.7</b> Software</a></li>
+<li class="chapter" data-level="1.8" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#learning-goals"><i class="fa fa-check"></i><b>1.8</b> Learning Goals</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-data-science-mathematics.html"><a href="introduction-to-data-science-mathematics.html"><i class="fa fa-check"></i><b>2</b> Introduction to Data Science Mathematics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-data-science-mathematics.html"><a href="introduction-to-data-science-mathematics.html#what-is-data"><i class="fa fa-check"></i><b>2.1</b> What is data?</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-data-science-mathematics.html"><a href="introduction-to-data-science-mathematics.html#three-mathematical-viewpoints"><i class="fa fa-check"></i><b>2.2</b> Three mathematical viewpoints</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-data-science-mathematics.html"><a href="introduction-to-data-science-mathematics.html#example-house-price-prediction"><i class="fa fa-check"></i><b>2.3</b> Example: house-price prediction</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-data-science-mathematics.html"><a href="introduction-to-data-science-mathematics.html#computational-example"><i class="fa fa-check"></i><b>2.4</b> Computational example</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-data-science-mathematics.html"><a href="introduction-to-data-science-mathematics.html#why-proofs-matter"><i class="fa fa-check"></i><b>2.5</b> Why proofs matter</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-data-science-mathematics.html"><a href="introduction-to-data-science-mathematics.html#exercises"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="functions-and-mathematical-models.html"><a href="functions-and-mathematical-models.html"><i class="fa fa-check"></i><b>3</b> Functions and Mathematical Models</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="functions-and-mathematical-models.html"><a href="functions-and-mathematical-models.html#functions"><i class="fa fa-check"></i><b>3.1</b> Functions</a></li>
+<li class="chapter" data-level="3.2" data-path="functions-and-mathematical-models.html"><a href="functions-and-mathematical-models.html#linear-functions"><i class="fa fa-check"></i><b>3.2</b> Linear functions</a></li>
+<li class="chapter" data-level="3.3" data-path="functions-and-mathematical-models.html"><a href="functions-and-mathematical-models.html#nonlinear-models"><i class="fa fa-check"></i><b>3.3</b> Nonlinear models</a></li>
+<li class="chapter" data-level="3.4" data-path="functions-and-mathematical-models.html"><a href="functions-and-mathematical-models.html#composition-of-functions"><i class="fa fa-check"></i><b>3.4</b> Composition of functions</a></li>
+<li class="chapter" data-level="3.5" data-path="functions-and-mathematical-models.html"><a href="functions-and-mathematical-models.html#graphical-interpretation"><i class="fa fa-check"></i><b>3.5</b> Graphical interpretation</a></li>
+<li class="chapter" data-level="3.6" data-path="functions-and-mathematical-models.html"><a href="functions-and-mathematical-models.html#exercises-1"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html"><i class="fa fa-check"></i><b>4</b> Vectors and Matrices</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#vectors"><i class="fa fa-check"></i><b>4.1</b> Vectors</a></li>
+<li class="chapter" data-level="4.2" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#inner-products"><i class="fa fa-check"></i><b>4.2</b> Inner products</a></li>
+<li class="chapter" data-level="4.3" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#matrices"><i class="fa fa-check"></i><b>4.3</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#matrix-multiplication"><i class="fa fa-check"></i><b>4.3.1</b> Matrix multiplication</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#data-interpretation"><i class="fa fa-check"></i><b>4.4</b> Data interpretation</a></li>
+<li class="chapter" data-level="4.5" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#r-examples"><i class="fa fa-check"></i><b>4.5</b> R examples</a></li>
+<li class="chapter" data-level="4.6" data-path="vectors-and-matrices.html"><a href="vectors-and-matrices.html#exercises-2"><i class="fa fa-check"></i><b>4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="geometry-of-data.html"><a href="geometry-of-data.html"><i class="fa fa-check"></i><b>5</b> Geometry of Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="geometry-of-data.html"><a href="geometry-of-data.html#distance"><i class="fa fa-check"></i><b>5.1</b> Distance</a></li>
+<li class="chapter" data-level="5.2" data-path="geometry-of-data.html"><a href="geometry-of-data.html#angles-and-cosine-similarity"><i class="fa fa-check"></i><b>5.2</b> Angles and cosine similarity</a></li>
+<li class="chapter" data-level="5.3" data-path="geometry-of-data.html"><a href="geometry-of-data.html#projections"><i class="fa fa-check"></i><b>5.3</b> Projections</a></li>
+<li class="chapter" data-level="5.4" data-path="geometry-of-data.html"><a href="geometry-of-data.html#visual-example"><i class="fa fa-check"></i><b>5.4</b> Visual example</a></li>
+<li class="chapter" data-level="5.5" data-path="geometry-of-data.html"><a href="geometry-of-data.html#exercises-3"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="probability-foundations.html"><a href="probability-foundations.html"><i class="fa fa-check"></i><b>6</b> Probability Foundations</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="probability-foundations.html"><a href="probability-foundations.html#sample-spaces-and-events"><i class="fa fa-check"></i><b>6.1</b> Sample spaces and events</a></li>
+<li class="chapter" data-level="6.2" data-path="probability-foundations.html"><a href="probability-foundations.html#conditional-probability"><i class="fa fa-check"></i><b>6.2</b> Conditional probability</a></li>
+<li class="chapter" data-level="6.3" data-path="probability-foundations.html"><a href="probability-foundations.html#bayes-rule"><i class="fa fa-check"></i><b>6.3</b> Bayes’ rule</a></li>
+<li class="chapter" data-level="6.4" data-path="probability-foundations.html"><a href="probability-foundations.html#independence"><i class="fa fa-check"></i><b>6.4</b> Independence</a></li>
+<li class="chapter" data-level="6.5" data-path="probability-foundations.html"><a href="probability-foundations.html#simulation"><i class="fa fa-check"></i><b>6.5</b> Simulation</a></li>
+<li class="chapter" data-level="6.6" data-path="probability-foundations.html"><a href="probability-foundations.html#exercises-4"><i class="fa fa-check"></i><b>6.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html"><i class="fa fa-check"></i><b>7</b> Random Variables and Distributions</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#discrete-random-variables"><i class="fa fa-check"></i><b>7.1</b> Discrete random variables</a></li>
+<li class="chapter" data-level="7.2" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#continuous-random-variables"><i class="fa fa-check"></i><b>7.2</b> Continuous random variables</a></li>
+<li class="chapter" data-level="7.3" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#expectation"><i class="fa fa-check"></i><b>7.3</b> Expectation</a></li>
+<li class="chapter" data-level="7.4" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#variance"><i class="fa fa-check"></i><b>7.4</b> Variance</a></li>
+<li class="chapter" data-level="7.5" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#important-distributions"><i class="fa fa-check"></i><b>7.5</b> Important distributions</a></li>
+<li class="chapter" data-level="7.6" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#r-example"><i class="fa fa-check"></i><b>7.6</b> R example</a></li>
+<li class="chapter" data-level="7.7" data-path="random-variables-and-distributions.html"><a href="random-variables-and-distributions.html#exercises-5"><i class="fa fa-check"></i><b>7.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>8</b> Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="statistical-inference.html"><a href="statistical-inference.html#estimation"><i class="fa fa-check"></i><b>8.1</b> Estimation</a></li>
+<li class="chapter" data-level="8.2" data-path="statistical-inference.html"><a href="statistical-inference.html#sampling-variability"><i class="fa fa-check"></i><b>8.2</b> Sampling variability</a></li>
+<li class="chapter" data-level="8.3" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals"><i class="fa fa-check"></i><b>8.3</b> Confidence intervals</a></li>
+<li class="chapter" data-level="8.4" data-path="statistical-inference.html"><a href="statistical-inference.html#hypothesis-testing"><i class="fa fa-check"></i><b>8.4</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="8.5" data-path="statistical-inference.html"><a href="statistical-inference.html#exercises-6"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>9</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="linear-regression.html"><a href="linear-regression.html#simple-linear-regression"><i class="fa fa-check"></i><b>9.1</b> Simple linear regression</a></li>
+<li class="chapter" data-level="9.2" data-path="linear-regression.html"><a href="linear-regression.html#least-squares"><i class="fa fa-check"></i><b>9.2</b> Least squares</a></li>
+<li class="chapter" data-level="9.3" data-path="linear-regression.html"><a href="linear-regression.html#interpretation"><i class="fa fa-check"></i><b>9.3</b> Interpretation</a></li>
+<li class="chapter" data-level="9.4" data-path="linear-regression.html"><a href="linear-regression.html#r-example-1"><i class="fa fa-check"></i><b>9.4</b> R example</a></li>
+<li class="chapter" data-level="9.5" data-path="linear-regression.html"><a href="linear-regression.html#exercises-7"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="classification-and-logistic-regression.html"><a href="classification-and-logistic-regression.html"><i class="fa fa-check"></i><b>10</b> Classification and Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="classification-and-logistic-regression.html"><a href="classification-and-logistic-regression.html#binary-classification"><i class="fa fa-check"></i><b>10.1</b> Binary classification</a></li>
+<li class="chapter" data-level="10.2" data-path="classification-and-logistic-regression.html"><a href="classification-and-logistic-regression.html#why-not-use-linear-regression"><i class="fa fa-check"></i><b>10.2</b> Why not use linear regression?</a></li>
+<li class="chapter" data-level="10.3" data-path="classification-and-logistic-regression.html"><a href="classification-and-logistic-regression.html#logistic-regression"><i class="fa fa-check"></i><b>10.3</b> Logistic regression</a></li>
+<li class="chapter" data-level="10.4" data-path="classification-and-logistic-regression.html"><a href="classification-and-logistic-regression.html#classification-rules"><i class="fa fa-check"></i><b>10.4</b> Classification rules</a></li>
+<li class="chapter" data-level="10.5" data-path="classification-and-logistic-regression.html"><a href="classification-and-logistic-regression.html#evaluation-metrics"><i class="fa fa-check"></i><b>10.5</b> Evaluation metrics</a></li>
+<li class="chapter" data-level="10.6" data-path="classification-and-logistic-regression.html"><a href="classification-and-logistic-regression.html#exercises-8"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="optimization-for-data-science.html"><a href="optimization-for-data-science.html"><i class="fa fa-check"></i><b>11</b> Optimization for Data Science</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="optimization-for-data-science.html"><a href="optimization-for-data-science.html#objective-functions"><i class="fa fa-check"></i><b>11.1</b> Objective functions</a></li>
+<li class="chapter" data-level="11.2" data-path="optimization-for-data-science.html"><a href="optimization-for-data-science.html#derivatives-and-gradients"><i class="fa fa-check"></i><b>11.2</b> Derivatives and gradients</a></li>
+<li class="chapter" data-level="11.3" data-path="optimization-for-data-science.html"><a href="optimization-for-data-science.html#gradient-descent"><i class="fa fa-check"></i><b>11.3</b> Gradient descent</a></li>
+<li class="chapter" data-level="11.4" data-path="optimization-for-data-science.html"><a href="optimization-for-data-science.html#convexity"><i class="fa fa-check"></i><b>11.4</b> Convexity</a></li>
+<li class="chapter" data-level="11.5" data-path="optimization-for-data-science.html"><a href="optimization-for-data-science.html#r-example-2"><i class="fa fa-check"></i><b>11.5</b> R example</a></li>
+<li class="chapter" data-level="11.6" data-path="optimization-for-data-science.html"><a href="optimization-for-data-science.html#exercises-9"><i class="fa fa-check"></i><b>11.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="regularization-and-high-dimensional-data.html"><a href="regularization-and-high-dimensional-data.html"><i class="fa fa-check"></i><b>12</b> Regularization and High-Dimensional Data</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="regularization-and-high-dimensional-data.html"><a href="regularization-and-high-dimensional-data.html#overfitting"><i class="fa fa-check"></i><b>12.1</b> Overfitting</a></li>
+<li class="chapter" data-level="12.2" data-path="regularization-and-high-dimensional-data.html"><a href="regularization-and-high-dimensional-data.html#regularization-penalties"><i class="fa fa-check"></i><b>12.2</b> Regularization penalties</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="regularization-and-high-dimensional-data.html"><a href="regularization-and-high-dimensional-data.html#ridge-regression"><i class="fa fa-check"></i><b>12.2.1</b> Ridge regression</a></li>
+<li class="chapter" data-level="12.2.2" data-path="regularization-and-high-dimensional-data.html"><a href="regularization-and-high-dimensional-data.html#lasso"><i class="fa fa-check"></i><b>12.2.2</b> Lasso</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="regularization-and-high-dimensional-data.html"><a href="regularization-and-high-dimensional-data.html#bias-variance-tradeoff"><i class="fa fa-check"></i><b>12.3</b> Bias-variance tradeoff</a></li>
+<li class="chapter" data-level="12.4" data-path="regularization-and-high-dimensional-data.html"><a href="regularization-and-high-dimensional-data.html#exercises-10"><i class="fa fa-check"></i><b>12.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="dimension-reduction.html"><a href="dimension-reduction.html"><i class="fa fa-check"></i><b>13</b> Dimension Reduction</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="dimension-reduction.html"><a href="dimension-reduction.html#principal-component-analysis"><i class="fa fa-check"></i><b>13.1</b> Principal component analysis</a></li>
+<li class="chapter" data-level="13.2" data-path="dimension-reduction.html"><a href="dimension-reduction.html#interpretation-1"><i class="fa fa-check"></i><b>13.2</b> Interpretation</a></li>
+<li class="chapter" data-level="13.3" data-path="dimension-reduction.html"><a href="dimension-reduction.html#svd-connection"><i class="fa fa-check"></i><b>13.3</b> SVD connection</a></li>
+<li class="chapter" data-level="13.4" data-path="dimension-reduction.html"><a href="dimension-reduction.html#r-example-3"><i class="fa fa-check"></i><b>13.4</b> R example</a></li>
+<li class="chapter" data-level="13.5" data-path="dimension-reduction.html"><a href="dimension-reduction.html#exercises-11"><i class="fa fa-check"></i><b>13.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="appendices.html"><a href="appendices.html"><i class="fa fa-check"></i><b>14</b> Appendices</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="appendices.html"><a href="appendices.html#appendix-a-useful-notation"><i class="fa fa-check"></i><b>14.1</b> Appendix A: Useful Notation</a></li>
+<li class="chapter" data-level="14.2" data-path="appendices.html"><a href="appendices.html#appendix-b-matrix-identities"><i class="fa fa-check"></i><b>14.2</b> Appendix B: Matrix Identities</a></li>
+<li class="chapter" data-level="14.3" data-path="appendices.html"><a href="appendices.html#appendix-c-r-setup"><i class="fa fa-check"></i><b>14.3</b> Appendix C: R Setup</a></li>
+<li class="chapter" data-level="14.4" data-path="appendices.html"><a href="appendices.html#appendix-d-suggestions-for-instructors"><i class="fa fa-check"></i><b>14.4</b> Appendix D: Suggestions for Instructors</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Mathematics of Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="classification-and-logistic-regression" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Classification and Logistic Regression<a href="classification-and-logistic-regression.html#classification-and-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Many data science problems require predicting categories rather than numerical
+values. Examples include spam detection, disease screening, fraud detection,
+and sentiment analysis.</p>
+<div id="binary-classification" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Binary classification<a href="classification-and-logistic-regression.html#binary-classification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In binary classification, the response variable takes values in <span class="math inline">\(\{0,1\}\)</span>.</p>
+</div>
+<div id="why-not-use-linear-regression" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Why not use linear regression?<a href="classification-and-logistic-regression.html#why-not-use-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A linear model can produce fitted values outside the interval <span class="math inline">\([0,1]\)</span>. That
+creates problems when the output should be interpreted as a probability.</p>
+</div>
+<div id="logistic-regression" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Logistic regression<a href="classification-and-logistic-regression.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Logistic regression models the conditional probability of class 1 by</p>
+<p><span class="math display">\[
+P(Y=1 \mid x) = \frac{1}{1+\exp\left(-(\beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p)\right)}.
+\]</span></p>
+<p>Equivalently, the log-odds satisfy</p>
+<p><span class="math display">\[
+\log\left(\frac{P(Y=1\mid x)}{1-P(Y=1\mid x)}\right) = \beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p.
+\]</span></p>
+</div>
+<div id="classification-rules" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Classification rules<a href="classification-and-logistic-regression.html#classification-rules" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>After obtaining a predicted probability <span class="math inline">\(\hat{p}(x)\)</span>, a decision rule classifies
+<span class="math inline">\(x\)</span> into class 1 when <span class="math inline">\(\hat{p}(x)\)</span> exceeds a threshold such as <span class="math inline">\(0.5\)</span>.</p>
+</div>
+<div id="evaluation-metrics" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Evaluation metrics<a href="classification-and-logistic-regression.html#evaluation-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Common metrics include accuracy, precision, recall, specificity, and AUC.</p>
+</div>
+<div id="exercises-8" class="section level2 hasAnchor" number="10.6">
+<h2><span class="header-section-number">10.6</span> Exercises<a href="classification-and-logistic-regression.html#exercises-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Explain why logistic regression outputs values in <span class="math inline">\((0,1)\)</span>.</li>
+<li>What is the meaning of an odds ratio?</li>
+<li>Describe one situation where accuracy is a poor metric.</li>
+<li>Write down the logistic model for two predictors.</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="optimization-for-data-science.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
